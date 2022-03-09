@@ -1,0 +1,104 @@
+body{
+    --dark1: #313552;
+    --dark2: #1f233d;
+    --dark_text: #ffffff;
+    --shadow: #252a46;
+    background-color: var(--dark1);
+}
+
+/******************* sidebar *******************/
+body #sidebar{
+    background-color: var(--dark2);
+}
+body #menusidebar{
+    color: var(--dark_text);
+    margin-top: 24px;
+    margin-left: 80%;
+    font-size: 30px;
+    border-radius: 20px;
+    background-color: var(--dark2);
+}
+body ul li i{
+    font-size: 30px;
+    color: var(--dark_text);
+}
+
+/* dark_light */
+body ul #dark_light{
+    position: relative;
+    background-color: var(--dark1);
+    border-radius: 25px;
+    width: 70%;
+    height: 40px;
+    margin-left: 15%;
+    cursor: pointer;
+}
+body ul #dark{
+    content: '';
+    position: absolute;
+    height: 100%;
+    width: 50%;
+    background: var(--dark_text);
+    border-radius: 50%;
+    transform: scale(0.8);
+}
+
+/******************* historique *******************/
+#historique{
+    border: 2px solid black;
+    border-radius: 20px;
+    min-height: 100px;
+    max-height: 400px;
+    box-shadow: 5px 5px var(--shadow);
+    margin-top: 200px;
+    margin-left: 14%;
+}
+body #historique header{
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 20px;
+}
+body #historique h3{
+    color: var(--dark_text);
+}
+body #historique article{
+    color: var(--dark_text);
+}
+body article #historique_op{
+    max-height: 250px;
+    overflow-y: auto;
+}
+
+/******************* calculator *******************/
+#calculator{
+    border: 2px solid black;
+    border-radius: 20px;
+    box-shadow: 5px 5px var(--shadow);
+    margin-bottom: 120px;
+    margin-right: 5%;
+}
+#result{
+    background-color: var(--dark1);
+    padding-left: 20px;
+    font-size: 80%;
+    box-shadow: 5px 5px var(--shadow);
+}
+body form input{
+    background-color: var(--dark1);
+    width: 30px;
+    height: 60px;
+    color: var(--dark_text);
+    border-radius: 50px;
+    margin: 5px;
+    box-shadow: 5px 5px var(--shadow);
+}
+body form input:hover{
+    box-shadow: 0px 0px var(--dark2);
+    transition: 0.4s ease;
+}
+body form button{
+    background-color: var(--dark_text);
+    border: 1px solid black;
+    width: 30px;
+    height: 60px;
+}

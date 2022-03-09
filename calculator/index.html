@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="index.js">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+    <title>Calculatrice</title>
+</head>
+<body class="d-flax" id="color_theme">
+    <!------------------------ sidebar ------------------------>
+    <div class="col-md-1 col-2 vh-100 position-relative" id="sidebar">
+        <i class="bi bi-caret-right-fill btn position-absolute top-0" id="menusidebar" onclick="menusidebar()"></i>
+        <ul class="nav nav-pills d-flex flex-sm-column vh-100" id="type_calc">
+            <li class="btn border-0 my-4"><i class="bi bi-calculator"></i></li>
+            <li class="btn btn-outline-primary border-0 my-2"><i class="bi bi-123"></i></li>
+            <li class="btn btn-outline-primary border-0 my-2"><i class="bi bi-thermometer"></i></li>
+            <li class="btn btn-outline-primary border-0 my-2"><i class="bi bi-clock"></i></li>
+            <li class="btn btn-outline-primary border-0 my-2"><i class="bi bi-currency-bitcoin"></i></li>
+            <li id="dark_light" onclick="dark()">
+                <div id="dark"></div>
+            </li>
+        </ul>
+    </div>
+    <div>
+        <!------------------------ historique ------------------------>
+        <div class="position-absolute top-0 left-0 col-4" id="historique">
+            <header>
+                <h3>Historique</h3>
+                <h3><i class="bi bi-trash3 btn" id="sup_historique" onclick="sup_historique()"></i></h3>
+            </header>
+            <article class="d-flex ms-5" id="historique_op">
+                <div id="hoperation"></div>
+                <div id="hresult"></div>
+            </article>
+        </div>
+        <!------------------------ calculator ------------------------>
+        <form class="col-md-5 col-9 py-2 h2 position-absolute bottom-0 end-0" id="calculator">
+            <div class="d-flex justify-content-around">
+                <input class="col-11" id="result" type="text" style="height: 60px;" placeholder="0" disabled>
+            </div>
+            <div class="d-flex justify-content-around">
+                <input class="col-2" type="button" value="Del">
+                <input class="col-2" type="button" value="Cl" onclick="btmCl()">
+                <input class="col-2" type="button" value="%" onclick="operation('%')">
+                <input class="col-2" type="button" value="&#247" onclick="operation('/')">
+            </div>
+           <div class="d-flex justify-content-around">
+                <input class="col-2" type="button" id="7" value="7" onclick="btm(7)">
+                <input class="col-2" type="button" id="8" value="8" onclick="btm(8)">
+                <input class="col-2" type="button" value="9" onclick="btm(9)">
+                <input class="col-2" type="button" value="x" onclick="operation('*')">
+           </div>
+           <div class="d-flex justify-content-around">
+                <input class="col-2" type="button" value="4" onclick="btm(4)">
+                <input class="col-2" type="button" value="5" onclick="btm(5)">
+                <input class="col-2" type="button" value="6" onclick="btm(6)">
+                <input class="col-2" type="button" value="+" onclick="operation('+')">
+           </div>
+           <div class="d-flex justify-content-around">
+                <input class="col-2" type="button" value="1" onclick="btm(1)">
+                <input class="col-2" type="button" value="2" onclick="btm(2)">
+                <input class="col-2" type="button" value="3" onclick="btm(3)">
+                <input class="col-2" type="button" value="-" onclick="operation('-')">
+           </div>
+           <div class="d-flex justify-content-around">
+                <input class="col-2" type="button" value="," onclick="btmFloat()">
+                <input class="col-2" type="button" value="0" onclick="btm(0)">
+                <input class="col-5" type="button" value="=" onclick="btmEgal()">
+           </div>
+        </form>
+    </div>
+</body>
+</html>
+<script src="index.js"></script>
+
+
+<!-- Number cruncher -->
