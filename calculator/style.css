@@ -22,6 +22,9 @@ body ul li i{
     font-size: 30px;
     color: var(--dark_text);
 }
+body ul .color_hover_type_calc:hover{
+    background-color: var(--dark1);
+}
 
 /* dark_light */
 body ul #dark_light{
@@ -67,6 +70,10 @@ body #historique article{
 body article #historique_op{
     max-height: 250px;
     overflow-y: auto;
+}
+body header #sup_historique{
+    color: var(--dark_text);
+    font-size: 20px;
 }
 
 /******************* calculator *******************/
