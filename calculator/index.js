@@ -48,29 +48,47 @@ function btm(val) {
    result.value += val;
 }
 
-function operation(operation) {
-   result.value += operation;
-   var search_addition = result.value.includes("+");
-   var search_soustraction = result.value.includes("-");
-   var search_multiplication = result.value.includes("*");
-   var search_division = result.value.includes("/");
-   var search_pourcentage = result.value.includes("%");
-   if(search_addition || search_soustraction || search_multiplication || search_division || search_pourcentage){
-      document.getElementById("addition_operation").disabled =
-      document.getElementById("soustraction_operation").disabled =
-      document.getElementById("multiplication_operation").disabled =
-      document.getElementById("division_operation").disabled =
-      document.getElementById("pourcentage_operation").disabled = true;
+function btmFloat() {
+   var regex_nombre = /^[0-9]/g;
+   var search_nombre = regex_nombre.test(result.value);
+
+   var regex_float = /\./;
+   var search_float = regex_float.test(result.value);
+   var regex_operation = /(\+|\-|\/|\%|\*)/g;
+
+   if(!search_nombre || result.value[result.value.length-1] == "+" || result.value[result.value.length-1] == "-" || result.value[result.value.length-1] == "/" || result.value[result.value.length-1] == "%" || result.value[result.value.length-1] == "*"){
+      result.value += "0" + ".";
+   }else{
+      result.value +=".";
    }
 }
 
-function btmFloat() {
-   result.value += ".";
-   var search_float = result.value.includes(".");
-   if(search_float){
-      console.log("flaut is here");
-      // document.getElementById("btm_float").disabled = true;
+
+
+function operation(operation) {
+   // debut de operation
+   var regex_nombre = /^[0-9]/g;
+   var search_nombre = regex_nombre.test(result.value);
+   if(!search_nombre){
+      result.value += "0" + operation;
    }
+   // la repetition d'operation
+   var repitition_operation = /\+|\-|\/|\%|\*/g;
+   var search_operation = repitition_operation.test(result.value);
+   if(!search_operation){
+      result.value += operation;
+   }
+   else{
+      var conf_operation = result.value[result.value.length-1]
+      if(conf_operation == "+" || conf_operation == "-" || conf_operation == "/" || conf_operation == "%" || conf_operation == "*"){
+         result.value = result.value.replace(conf_operation , operation);
+      }
+      else{
+         result.value += "0";
+         btmEgal();
+         result.value += operation;
+      }
+   }  
 }
 
 function btmEgal() {
@@ -78,82 +96,70 @@ function btmEgal() {
    var egal = eval(result.value);
    result.value = egal;
    document.getElementById("hresult").innerHTML += "<h3>" + "=" +  result.value + "<h3>";
-   document.getElementById("addition_operation").disabled =
-   document.getElementById("soustraction_operation").disabled =
-   document.getElementById("multiplication_operation").disabled =
-   document.getElementById("division_operation").disabled =
-   document.getElementById("pourcentage_operation").disabled = false;
 }
 
-   const addition = /\+/;
-   const soustraction = /\-/;
-   const division = /\//;
-   const multiplication = /\*/;
-   const pourcentage = /\%/;
 
-      // switch (operation) {
-   //    case '+':
-   //       var type_operation = "+";
-   //    break
-   //    case '-':
-   //       var type_operation = "-";
-   //    break
-   //    case '*':
-   //       var type_operation = "*";
-   //    break
-   //    case '/':
-   //       var type_operation = "/";
-   //    break
-   //    case '%':
-   //       var type_operation = "%";
-   //    break
-   //    default:
-   // }
-   // console.log(type_operation);
+// const addition = /\+/;
+// const soustraction = /\-/;
+// const division = /\//;
+// const multiplication = /\*/;
+// const pourcentage = /\%/;
 
-   
-
-   //  confirmation operation
-   // var test = "+13312";
-   // const conf_operation = /(\+|\-|\/|\%|\*)[0-9]/g;
-   // if(conf_operation.test(test)){
-   //    console.log("your operation is correct");
-   // }else{
-   //    console.log("your operation is incorrect");
-   // }
-
-   // pour egal
-   // const conf_operation = /[0-9](\+|\-|\/|\%|\*|\.)[0-9]/g;
-
-   // pour operation
-   // const conf_operation = /[0-9]/g;
-
-   // pour la firgule
-   // const conf_operation = /(\+|\-|\/|\%|\*)[0-9]/g;
+   // switch (operation) {
+//    case '+':
+//       var type_operation = "+";
+//    break
+//    case '-':
+//       var type_operation = "-";
+//    break
+//    case '*':
+//       var type_operation = "*";
+//    break
+//    case '/':
+//       var type_operation = "/";
+//    break
+//    case '%':
+//       var type_operation = "%";
+//    break
+//    default:
+// }
+// console.log(type_operation);
 
 
-   // var test = "12 3";
-   // const regex = " ";
-   // const n1_n2 = test.split(regex);
-   // console.log(n1_n2);
-   // var n1 = n1_n2[0];
-   // var n2 = n1_n2[1];
-   // switch ("+") {
-   //    case '+':
-   //       result.value = n1_n2[0] + n1_n2[1] ;
-   //    break
-   //    case '-':
-   //       result.value = n1 - n2;
-   //    break
-   //    case '*':
-   //       result.value = n1 * n2;
-   //    break
-   //    case '/':
-   //       result.value = n1 / n2;
-   //    break
-   //    case '%':
-   //       result.value = n1 % n2;
-   //    break
-   //    default:
-   // }
-   // console.log(result.value);
+// pour egal
+// const conf_operation = /[0-9](\+|\-|\/|\%|\*|\.)[0-9]/g;
+
+// pour operation
+// const conf_operation = /[0-9]/g;
+
+// pour la firgule
+// const conf_operation = /(\+|\-|\/|\%|\*)[0-9]/g;
+
+
+// var test = "12+3";
+// const regex = /[0-9](\+|\-|\/|\%|\*)[0-9]/g;
+// const n1_n2 = test.split(regex);
+// console.log(n1_n2);
+// switch ('+') {
+//    case '+':
+//       x = n1_n2[0] + n1_n2[1] ;
+//       console.log(x);
+//    break
+//    case '-':
+//       x = n1_n2[0] - n1_n2[1];
+//       console.log(x);
+//    break
+//    case '*':
+//       x = n1_n2[0] * n1_n2[1];
+//       console.log(x);
+//    break
+//    case '/':
+//       x = n1_n2[0] / n1_n2[1];
+//       console.log(x);
+//    break
+//    case '%':
+//       x = n1_n2[0] % n1_n2[1];
+//       console.log(x);
+//    break
+//    default:
+// }
