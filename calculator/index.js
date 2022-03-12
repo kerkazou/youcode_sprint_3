@@ -52,14 +52,15 @@ function btmFloat() {
    var regex_nombre = /^[0-9]/g;
    var search_nombre = regex_nombre.test(result.value);
 
-   var regex_float = /\./;
-   var search_float = regex_float.test(result.value);
-   var regex_operation = /(\+|\-|\/|\%|\*)/g;
-
-   if(!search_nombre || result.value[result.value.length-1] == "+" || result.value[result.value.length-1] == "-" || result.value[result.value.length-1] == "/" || result.value[result.value.length-1] == "%" || result.value[result.value.length-1] == "*"){
-      result.value += "0" + ".";
-   }else{
-      result.value +=".";
+   if(!(result.value[result.value.length-1] == ".")){
+      document.getElementById("btm_float").disabled = false;
+      if(!search_nombre || result.value[result.value.length-1] == "+" || result.value[result.value.length-1] == "-" || result.value[result.value.length-1] == "/" || result.value[result.value.length-1] == "%" || result.value[result.value.length-1] == "*"){
+         result.value += "0" + ".";
+         document.getElementById("btm_float").disabled = true;
+      }else{
+         result.value +=".";
+         document.getElementById("btm_float").disabled = true;
+      }
    }
 }
 
@@ -67,6 +68,7 @@ function btmFloat() {
 
 function operation(operation) {
    // debut de operation
+   document.getElementById("btm_float").disabled = false;
    var regex_nombre = /^[0-9]/g;
    var search_nombre = regex_nombre.test(result.value);
    if(!search_nombre){
@@ -104,36 +106,6 @@ function btmEgal() {
 // const division = /\//;
 // const multiplication = /\*/;
 // const pourcentage = /\%/;
-
-   // switch (operation) {
-//    case '+':
-//       var type_operation = "+";
-//    break
-//    case '-':
-//       var type_operation = "-";
-//    break
-//    case '*':
-//       var type_operation = "*";
-//    break
-//    case '/':
-//       var type_operation = "/";
-//    break
-//    case '%':
-//       var type_operation = "%";
-//    break
-//    default:
-// }
-// console.log(type_operation);
-
-
-// pour egal
-// const conf_operation = /[0-9](\+|\-|\/|\%|\*|\.)[0-9]/g;
-
-// pour operation
-// const conf_operation = /[0-9]/g;
-
-// pour la firgule
-// const conf_operation = /(\+|\-|\/|\%|\*)[0-9]/g;
 
 
 // var test = "12+3";
