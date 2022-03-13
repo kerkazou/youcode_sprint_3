@@ -2,14 +2,17 @@
 function menusidebar(){
    var menusidebar = document.getElementById("menusidebar");
    var type_calc = document.getElementById("type_calc");
+   var calculator_simple = document.getElementById("calculator_simple");
    if(menusidebar.style.transform){
       menusidebar.style.removeProperty('transform');
       sidebar.style.removeProperty('width');
       type_calc.style.removeProperty('display');
+      calculator_simple.style.removeProperty('width');
    }else{
       menusidebar.setAttribute("style" , "transform: rotate(180deg); transition: 1s ease;");
       sidebar.setAttribute("style" , "width: 0px; transition: 1s ease;");
       type_calc.setAttribute("style" , "display: none !important; transition: 1s ease;");
+      calculator_simple.setAttribute("style" , "width: 100%; transition: 1s ease;");
    }
 }
 
@@ -45,7 +48,12 @@ function del() {
 }
 
 function btm(val) {
-   result.value += val;
+   if((val == 0) && (result.value[result.value.length-1] == "/")){
+      document.getElementById("btm_0").disabled = true;
+   }else{
+      document.getElementById("btm_0").disabled = false;
+      result.value += val
+   }
 }
 
 function btmFloat() {
@@ -63,7 +71,6 @@ function btmFloat() {
       }
    }
 }
-
 
 
 function operation(operation) {
@@ -89,7 +96,12 @@ function operation(operation) {
          btmEgal();
          result.value += operation;
       }
-   }  
+   }
+   if(result.value[result.value.length-1] == "/"){
+      document.getElementById("btm_0").disabled = true;
+   }else{
+      document.getElementById("btm_0").disabled = false;
+   }
 }
 
 // function btmEgal() {

@@ -4,6 +4,8 @@ body{
     --dark_text: #ffffff;
     --shadow: #252a46;
     background-color: var(--dark1);
+    display: flex;
+    overflow: hidden;
 }
 
 /******************* sidebar *******************/
@@ -24,6 +26,11 @@ body ul li i{
 }
 body ul .color_hover_type_calc:hover{
     background-color: var(--dark1);
+}
+@media screen and (max-width: 770px){
+    body #menusidebar{
+        font-size: 20px;
+    }
 }
 
 /* dark_light */
@@ -46,34 +53,17 @@ body ul #dark{
     transform: scale(0.8);
 }
 
-/******************* historique *******************/
-#historique{
-    border: 2px solid black;
-    border-radius: 20px;
-    min-height: 100px;
-    max-height: 400px;
-    box-shadow: 5px 5px var(--shadow);
-    margin-top: 200px;
-    margin-left: 14%;
+/******************* calculator simple *******************/
+body #calculator_simple{
+    flex-direction: row-reverse;
+    justify-content: space-around;
+    align-items: center;
 }
-body #historique header{
-    display: flex;
-    justify-content: space-between;
-    padding: 5px 20px;
-}
-body #historique h3{
-    color: var(--dark_text);
-}
-body #historique article{
-    color: var(--dark_text);
-}
-body article #historique_op{
-    max-height: 250px;
-    overflow-y: auto;
-}
-body header #sup_historique{
-    color: var(--dark_text);
-    font-size: 20px;
+@media screen and (max-width: 770px){
+    body #calculator_simple{
+        display: flex;
+        flex-direction: column;
+    }
 }
 
 /******************* calculator *******************/
@@ -81,8 +71,6 @@ body header #sup_historique{
     border: 2px solid black;
     border-radius: 20px;
     box-shadow: 5px 5px var(--shadow);
-    margin-bottom: 120px;
-    margin-right: 5%;
 }
 #result{
     background-color: var(--dark1);
@@ -108,4 +96,34 @@ body form button{
     border: 1px solid black;
     width: 30px;
     height: 60px;
+}
+
+/******************* historique calculator *******************/
+#historique{
+    border: 2px solid black;
+    border-radius: 20px;
+    box-shadow: 5px 5px var(--shadow);
+    min-height: 100px;
+    max-height: 300px;
+    overflow-x: auto;
+}
+body #historique header{
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 20px;
+}
+body #historique h3{
+    color: var(--dark_text);
+}
+body #historique article{
+    color: var(--dark_text);
+}
+body article #historique_op{
+    min-width: 100%;
+    overflow-x: auto;  
+    min-height: 400px;
+}
+body header #sup_historique{
+    color: var(--dark_text);
+    font-size: 20px;
 }
