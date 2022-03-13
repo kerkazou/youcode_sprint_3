@@ -86,52 +86,79 @@ function operation(operation) {
          result.value = result.value.replace(conf_operation , operation);
       }
       else{
-         result.value += "0";
          btmEgal();
          result.value += operation;
       }
    }  
 }
 
+// function btmEgal() {
+//    document.getElementById("hoperation").innerHTML += result.value;
+//    var egal = eval(result.value);
+//    result.value = egal;
+//    document.getElementById("hoperation").innerHTML += "=" +  result.value + "<br>";
+
+//    var regex_nombre3 = /\./g;
+//    var search_nombre3 = regex_nombre3.test(result.value);
+//    if(!search_nombre3){
+//       document.getElementById("btm_float").disabled = false;
+//    }
+// }
+
 function btmEgal() {
-   document.getElementById("hoperation").innerHTML += "<h3>" + result.value + "<h3>";
-   var egal = eval(result.value);
+   document.getElementById("hoperation").innerHTML += result.value;
+
+   const addition = /\+/;
+   const soustraction = /\-/;
+   const division = /\//;
+   const multiplication = /\*/;
+   const pourcentage = /\%/;
+   
+   if(addition.test(result.value)){
+      var test_valid_op = result.value.split(addition);
+      var egal = parseInt(test_valid_op[0]) + parseInt(test_valid_op[1]);
+   }
+   if(soustraction.test(result.value)){
+      var test_valid_op = result.value.split(soustraction);
+      var egal = parseInt(test_valid_op[0]) - parseInt(test_valid_op[1]);
+   }
+   if(division.test(result.value)){
+      var test_valid_op = result.value.split(division);
+      var egal = parseInt(test_valid_op[0]) / parseInt(test_valid_op[1]);
+   }   
+   if(multiplication.test(result.value)){
+      var test_valid_op = result.value.split(multiplication);
+      var egal = parseInt(test_valid_op[0]) * parseInt(test_valid_op[1]);
+   }
+   if(pourcentage.test(result.value)){
+      var test_valid_op = result.value.split(pourcentage);
+      var egal = parseInt(test_valid_op[0]) % parseInt(test_valid_op[1]);
+   }
+
    result.value = egal;
-   document.getElementById("hresult").innerHTML += "<h3>" + "=" +  result.value + "<h3>";
+   document.getElementById("hoperation").innerHTML += "=" +  result.value + "<br>";
+   var regex_nombre3 = /\./g;
+   var search_nombre3 = regex_nombre3.test(result.value);
+   if(!search_nombre3){
+      document.getElementById("btm_float").disabled = false;
+   }
 }
 
-
-// const addition = /\+/;
-// const soustraction = /\-/;
-// const division = /\//;
-// const multiplication = /\*/;
-// const pourcentage = /\%/;
-
-
-// var test = "12+3";
-// const regex = /[0-9](\+|\-|\/|\%|\*)[0-9]/g;
-// const n1_n2 = test.split(regex);
-// console.log(n1_n2);
-// switch ('+') {
-//    case '+':
-//       x = n1_n2[0] + n1_n2[1] ;
-//       console.log(x);
-//    break
-//    case '-':
-//       x = n1_n2[0] - n1_n2[1];
-//       console.log(x);
-//    break
-//    case '*':
-//       x = n1_n2[0] * n1_n2[1];
-//       console.log(x);
-//    break
-//    case '/':
-//       x = n1_n2[0] / n1_n2[1];
-//       console.log(x);
-//    break
-//    case '%':
-//       x = n1_n2[0] % n1_n2[1];
-//       console.log(x);
-//    break
-//    default:
-// }
+   // switch ('+') {
+   //    case '+':
+   //       egal = n1_n2[0] + n1_n2[1];
+   //    break
+   //    case '-':
+   //       egal = n1_n2[0] - n1_n2[1];
+   //    break
+   //    case '*':
+   //       egal = n1_n2[0] * n1_n2[1];
+   //    break
+   //    case '/':
+   //       egal = n1_n2[0] / n1_n2[1];
+   //    break
+   //    case '%':
+   //       egal = n1_n2[0] % n1_n2[1];
+   //    break
+   //    default:
+   // }
