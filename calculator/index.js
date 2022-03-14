@@ -78,7 +78,7 @@ function operation(operation) {
    document.getElementById("btm_float").disabled = false;
    var regex_nombre = /^[0-9]/g;
    var search_nombre = regex_nombre.test(result.value);
-   if(!search_nombre){
+   if(!search_nombre || result.value[result.value.length-1] == "."){
       result.value += "0" + operation;
    }
    // la repetition d'operation
@@ -118,6 +118,11 @@ function operation(operation) {
 // }
 
 function btmEgal() {
+   var execut_operation = result.value[result.value.length-1];
+   if(execut_operation == "+" || execut_operation == "-" || execut_operation == "/" || execut_operation == "*" || execut_operation == "%" ||execut_operation == "."){
+      result.value += "0";
+   }
+
    document.getElementById("hoperation").innerHTML += result.value;
 
    const addition = /\+/;
@@ -154,23 +159,9 @@ function btmEgal() {
    if(!search_nombre3){
       document.getElementById("btm_float").disabled = false;
    }
+   
 }
 
-   // switch ('+') {
-   //    case '+':
-   //       egal = n1_n2[0] + n1_n2[1];
-   //    break
-   //    case '-':
-   //       egal = n1_n2[0] - n1_n2[1];
-   //    break
-   //    case '*':
-   //       egal = n1_n2[0] * n1_n2[1];
-   //    break
-   //    case '/':
-   //       egal = n1_n2[0] / n1_n2[1];
-   //    break
-   //    case '%':
-   //       egal = n1_n2[0] % n1_n2[1];
-   //    break
-   //    default:
-   // }
+function calcul() {
+
+}
