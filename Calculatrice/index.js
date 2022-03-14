@@ -53,6 +53,7 @@ function btm(val) {
    }else{
       document.getElementById("btm_0").disabled = false;
       result.value += val
+      
    }
 }
 
@@ -97,25 +98,12 @@ function operation(operation) {
          result.value += operation;
       }
    }
-   if(result.value[result.value.length-1] == "/"){
+   if(result.value[result.value.length-1] == "/" || result.value[result.value.length-1] == "%"){
       document.getElementById("btm_0").disabled = true;
    }else{
       document.getElementById("btm_0").disabled = false;
    }
 }
-
-// function btmEgal() {
-//    document.getElementById("hoperation").innerHTML += result.value;
-//    var egal = eval(result.value);
-//    result.value = egal;
-//    document.getElementById("hoperation").innerHTML += "=" +  result.value + "<br>";
-
-//    var regex_nombre3 = /\./g;
-//    var search_nombre3 = regex_nombre3.test(result.value);
-//    if(!search_nombre3){
-//       document.getElementById("btm_float").disabled = false;
-//    }
-// }
 
 function btmEgal() {
    var execut_operation = result.value[result.value.length-1];
@@ -123,45 +111,46 @@ function btmEgal() {
       result.value += "0";
    }
 
-   document.getElementById("hoperation").innerHTML += result.value;
+   var op_exixte = /\+|\-|\/|\%|\*/g;
+   var op_exixte_to_valid = op_exixte.test(result.value);
+   if(op_exixte_to_valid){
+      document.getElementById("hoperation").innerHTML += result.value;
+      const division = /\//;
+      const multiplication = /\*/;
+      const addition = /\+/;
+      const soustraction = /\-/;
+      const pourcentage = /\%/;
 
-   const addition = /\+/;
-   const soustraction = /\-/;
-   const division = /\//;
-   const multiplication = /\*/;
-   const pourcentage = /\%/;
-   
-   if(addition.test(result.value)){
-      var test_valid_op = result.value.split(addition);
-      var egal = parseInt(test_valid_op[0]) + parseInt(test_valid_op[1]);
-   }
-   if(soustraction.test(result.value)){
-      var test_valid_op = result.value.split(soustraction);
-      var egal = parseInt(test_valid_op[0]) - parseInt(test_valid_op[1]);
-   }
-   if(division.test(result.value)){
-      var test_valid_op = result.value.split(division);
-      var egal = parseInt(test_valid_op[0]) / parseInt(test_valid_op[1]);
-   }   
-   if(multiplication.test(result.value)){
-      var test_valid_op = result.value.split(multiplication);
-      var egal = parseInt(test_valid_op[0]) * parseInt(test_valid_op[1]);
-   }
-   if(pourcentage.test(result.value)){
-      var test_valid_op = result.value.split(pourcentage);
-      var egal = parseInt(test_valid_op[0]) % parseInt(test_valid_op[1]);
+      if(division.test(result.value)){
+         var test_valid_op = result.value.split(division);
+         var egal = parseFloat(test_valid_op[0]) / parseFloat(test_valid_op[1]);
+      }   
+      if(multiplication.test(result.value)){
+         var test_valid_op = result.value.split(multiplication);
+         var egal = parseFloat(test_valid_op[0]) * parseFloat(test_valid_op[1]);
+      }
+      if(addition.test(result.value)){
+         var test_valid_op = result.value.split(addition);
+         var egal = parseFloat(test_valid_op[0]) + parseFloat(test_valid_op[1]);
+      }
+      if(soustraction.test(result.value)){
+         var test_valid_op = result.value.split(soustraction);
+         var egal = parseFloat(test_valid_op[0]) - parseFloat(test_valid_op[1]);
+      }
+      if(pourcentage.test(result.value)){
+         var test_valid_op = result.value.split(pourcentage);
+         var egal = parseFloat(test_valid_op[0]) % parseFloat(test_valid_op[1]);
+      }
+
+      result.value = egal;
+      document.getElementById("hoperation").innerHTML += "=" +  result.value + "<br>";
+   }else{
+      
    }
 
-   result.value = egal;
-   document.getElementById("hoperation").innerHTML += "=" +  result.value + "<br>";
    var regex_nombre3 = /\./g;
    var search_nombre3 = regex_nombre3.test(result.value);
    if(!search_nombre3){
       document.getElementById("btm_float").disabled = false;
    }
-   
-}
-
-function calcul() {
-
 }
